@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Selecciona los Colores de la Resistencia</h2>
+      
+        <form [formGroup]="resistenciaForm" (ngSubmit)="calcularResistencia()">
+          <div>
+            <label for="color1">Color 1:</label>
+            <select id="color1" formControlName="color1">
+              <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+            </select>
+          </div>
+          <div>
+            <label for="color2">Color 2:</label>
+            <select id="color2" formControlName="color2">
+              <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+            </select>
+          </div>
+          <div>
+            <label for="color3">Color 3:</label>
+            <select id="color3" formControlName="color3">
+              <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+            </select>
+          </div>
+      
+          <div>
+            <label>Tolerancia:</label>
+            <div>
+              <input type="radio" id="oro" formControlName="tolerancia" [value]="5">
+              <label for="oro">Oro (5%)</label>
+            </div>
+            <div>
+              <input type="radio" id="plata" formControlName="tolerancia" [value]="10">
+              <label for="plata">Plata (10%)</label>
+            </div>
+          </div>
+          <button type="submit" [disabled]="resistenciaForm.invalid">Registrar</button>
+  </form>
+
+  <h3>Resistencias Registradas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Color 1</th>
+        <th>Color 2</th>
+        <th>Color 3</th>
+        <th>Tolerancia</th>
+        <th>Valor</th>
+        <th>Valor Máximo</th>
+        <th>Valor Mínimo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let resistencia of resistencias">
+        <td>{{ resistencia.color1 }}</td>
+        <td>{{ resistencia.color2 }}</td>
+        <td>{{ resistencia.color3 }}</td>
+        <td>{{ resistencia.tolerancia }}%</td>
+        <td>{{ resistencia.valor }}</td>
+        <td>{{ resistencia.valorMaximo }}</td>
+        <td>{{ resistencia.valorMinimo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      
+</body>
+</html>
